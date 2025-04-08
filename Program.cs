@@ -9,6 +9,7 @@ class Program
             Console.Clear();
             TestConstructors();
             TestEquationSolution();
+            TestOperations();
         } while (InputValidator.AskToContinue());
     }
 
@@ -67,6 +68,35 @@ class Program
                 1 => $"x = {roots[0]:F2}",
                 _ => $"x₁ = {roots[0]:F2}, x₂ = {roots[1]:F2}"
             });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка: {ex.Message}");
+        }
+    }
+
+    static void TestOperations()
+    {
+        try
+        {
+            var eq1 = new QuadraticEquation(1, -5, 6);
+            Console.WriteLine($"\nИсходное уравнение: {eq1}");
+
+            var eq2 = ++eq1;
+            Console.WriteLine($"Уравнение после ++: {eq2}");
+
+            var eq3 = --eq2;
+            Console.WriteLine($"Уравнение после --: {eq3}");
+
+            double discriminant = (double)eq3;
+            Console.WriteLine($"Дискриминант: {discriminant}");
+
+            bool hasRoots = (bool)eq3;
+            Console.WriteLine($"Существуют ли корни: {hasRoots}");
+
+            var eq4 = new QuadraticEquation(1, -5, 6);
+            Console.WriteLine($"Уравнения равны: {eq3 == eq4}");
+            Console.WriteLine($"Уравнения не равны: {eq3 != eq4}");
         }
         catch (Exception ex)
         {
